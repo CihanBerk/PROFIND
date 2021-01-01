@@ -49,15 +49,26 @@
 
           <span class="navbar-item">
             <a class="button is-link" href="{{ url_for('projects_page') }}">Projects</a>
-          </span>  
+          </span> 
+		  
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('openpositions_page') }}">Open Positions</a>
+          </span>                      
 
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('messagetoprofs_page') }}">Messages</a>
+          </span>  
+          
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('questions_page') }}">Questions</a>
+          </span> 
           <!-- <span class="navbar-item">
             <a class="button is-link" href="{{ url_for('openpositions_page') }}">Open Positions</a>
           </span> -->                     
         </div>
 	</nav>
 
-
+<!--
 	<nav class="navbar" aria-label="main navigation">
         <div class="navbar-brand"> 
           <span class="navbar-item">
@@ -73,7 +84,7 @@
           </span>                      
         </div>
 	</nav>
-	
+-->	
 	
 			
 	<nav class="navbar" aria-label="main navigation">
@@ -120,18 +131,7 @@
             <a class="button is-link" href="{{ url_for('project_add_page') }}">Add project</a>
           </span>
           {% endif %}
-        </div>
-	</nav>
-
-
-	<nav class="navbar" aria-label="main navigation">
-        <div class="navbar-brand">             
-		  <!-- {% if current_user.is_admin %}
-          <span class="navbar-item">
-            <a class="button is-link" href="{{ url_for('project_add_page') }}">Add project</a>
-          </span>
-          {% endif %} -->
-          
+		  
 		  {% if current_user.is_admin %}
           <span class="navbar-item">
             <a class="button is-link" href="{{ url_for('openposition_add_page') }}">Add Open Position</a>
@@ -151,7 +151,30 @@
           {% endif %}
         </div>
 	</nav>
-	
+
+<!--
+	<nav class="navbar" aria-label="main navigation">
+        <div class="navbar-brand">                       
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('openposition_add_page') }}">Add Open Position</a>
+          </span>
+          {% endif %}
+          
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('messagetoprof_add_page') }}">Add Message</a>
+          </span>
+          {% endif %}
+          
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('question_add_page') }}">Add Question</a>
+          </span>
+          {% endif %}
+        </div>
+	</nav>
+-->	
 	
 	<nav class="navbar" aria-label="main navigation">
         <div class="navbar-brand">            

@@ -1,0 +1,45 @@
+{%extends "layout.html"%}
+{% block title %} Students {%endblock%}
+
+{%block content%}
+	<h1 class="title">Students</h1>
+
+	{% if students %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="student_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for student_key, student in students %}
+	  <tr>
+		<td>
+		  {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="student_keys" value="{{ student_key }}"/>
+		  </label>
+		  {% endif %}
+		  <a href="{{ url_for('student_page', student_key=student_key) }}">
+			<!-- {{ student.prof_name }}
+			{{ student.prof_surname }}
+			{{ student.prof_university }}
+			{{ student.prof_department }} -->
+			{{ student.name }}
+            {{ student.surname }}
+            <!-- {{ student.university }}
+            {{ student.department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	
+	{% if current_user.is_admin %}
+	 <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small">Delete</button>
+        </div>
+      </div>
+      {% endif %}
+    </form>
+	{% endif %}
+{%endblock%}
+
+

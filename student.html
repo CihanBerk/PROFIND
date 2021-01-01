@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}Student{% endblock %}
+{% block content %}
+    <h1 class="title">Student</h1>
+
+    <table class="table">
+      <tr>
+        <th>Name:</th>
+        <td>{{ student.name }}</td>
+      </tr>
+      
+      <tr>
+        <th>Surname:</th>
+        <td>{{ student.surname }}</td>
+      </tr>
+      
+	  <tr>
+        <th>University:</th>
+        <td>{{ student.university }}</td>
+      </tr> 
+           
+	  <tr>
+        <th>Department:</th>
+        <td>{{ student.department }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Professor Name:</th>
+        <td>{{ student.prof_name }}</td>
+      </tr>
+	  <tr>
+        <th>Professor Surname:</th>
+        <td>{{ student.prof_surname }}</td>
+      </tr>
+	  <tr>
+        <th>Professor University:</th>
+        <td>{{ student.prof_university }}</td>
+      </tr>
+	  <tr>
+        <th>Professor Department:</th>
+        <td>{{ student.prof_department }}</td>
+      </tr>
+
+    </table>
+    
+    {% if current_user.is_authenticated %}
+	<div class="field is-grouped">
+      <div class="control">
+        <a class="button is-primary is-outlined is-small"
+           href="{{ request.path }}/edit">Edit</a>
+      </div>
+    </div>
+   {% endif %}
+{% endblock %}

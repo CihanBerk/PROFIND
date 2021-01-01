@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+{% block title %}Edit eval{% endblock %}
+{% block content %}
+    <h1 class="title">Edit eval</h1>
+
+    <form action="" method="post" name="eval_edit"> <!-- Here action is some url -->
+	  {{ form.csrf_token }}                
+                  
+      <div class="field">
+        <label for="title" class="label">Subject</label>
+        <div class="control">
+          {{ form.subject(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.subject.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+            
+      <div class="field">
+        <label for="title" class="label">Comment</label>
+        <div class="control">
+          {{ form.evall(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.evall.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+      
+	  <div class="field">
+        <label for="title" class="label">Course Name</label>
+        <div class="control">
+          {{ form.course_name(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.course_name.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+                  
+	  <div class="field">
+        <label for="title" class="label">Course Year</label>
+        <div class="control">
+          {{ form.course_year(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.course_year.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+            
+	  <div class="field">
+        <label for="title" class="label">Course Term</label>
+        <div class="control">
+          {{ form.course_term(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.course_term.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>            
+                  
+	  <div class="field">
+        <label for="title" class="label">Student Name</label>
+        <div class="control">
+          {{ form.student_name(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.student_name.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>  
+                  
+	  <div class="field">
+        <label for="title" class="label">Student Surname</label>
+        <div class="control">
+          {{ form.student_surname(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.student_surname.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>  
+                  
+	  <div class="field">
+        <label for="title" class="label">Student University</label>
+        <div class="control">
+          {{ form.student_university(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.student_university.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>  
+                  
+	  <div class="field">
+        <label for="title" class="label">Student Department</label>
+        <div class="control">
+          {{ form.student_department(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.student_department.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div> 
+
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary is-small">Save</button>
+        </div>
+      </div>
+    </form>
+{% endblock %}

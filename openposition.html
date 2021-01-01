@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block title %}Open position{% endblock %}
+{% block content %}
+    <h1 class="title">Open position</h1>
+
+    <table class="table">
+      <tr>
+        <th>Position Type:</th>
+        <td>{{ openposition.postype }}</td>
+      </tr>
+      
+      <tr>
+        <th>Requirements:</th>
+        <td>{{ openposition.requirements }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Professor Name:</th>
+        <td>{{ openposition.prof_name }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Professor Surame:</th>
+        <td>{{ openposition.prof_surname }}</td>
+      </tr>      
+      
+	  <tr>
+        <th>Professor University:</th>
+        <td>{{ openposition.prof_university }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Professor Department:</th>
+        <td>{{ openposition.prof_department }}</td>
+      </tr>
+    </table>
+    
+    {% if current_user.is_admin %}
+	<div class="field is-grouped">
+      <div class="control">
+        <a class="button is-primary is-outlined is-small"
+           href="{{ request.path }}/edit">Edit</a>
+      </div>
+    </div>
+   {% endif %}
+   
+   <h3 class="title">Applied Students</h3>
+
+	{% if students %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="student_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for student_key, student in students %}
+	  <tr>
+		<td>
+		  {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="student_keys" value="{{ student_key }}"/>
+		  </label>
+		  {% endif %}
+		  <a href="{{ url_for('student_page', student_key=student_key) }}">
+			<!-- {{ student.prof_name }}
+			{{ student.prof_surname }}
+			{{ student.prof_university }}
+			{{ student.prof_department }} -->
+			{{ student.name }}
+            {{ student.surname }}
+            <!-- {{"-"}}
+            {{ student.prof_name }}
+			{{ student.prof_surname }} -->
+            <!-- {{ student.university }}
+            {{ student.department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+    {% endif %}
+    
+    <!-- <h3 class="title">Applied Student</h3>  
+    <table class="table">
+	  <tr>
+        <th>Student Name:</th>
+        <td>{{ openposition.student_name }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Student Surname:</th>
+        <td>{{ openposition.student_surname }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Student University:</th>
+        <td>{{ openposition.student_university }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Student Department:</th>
+        <td>{{ openposition.student_department }}</td>
+      </tr>
+    </table> -->
+    
+{% endblock %}

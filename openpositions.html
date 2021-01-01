@@ -1,0 +1,49 @@
+{%extends "layout.html"%}
+{% block title %} Open Positions {%endblock%}
+
+{%block content%}
+	<h1 class="title">Open Positions</h1>
+
+	{% if openpositions %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="openposition_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for openposition_key, openposition in openpositions %}
+	  <tr>
+		<td>
+		  {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="openposition_keys" value="{{ openposition_key }}"/>
+		  </label>
+		  {% endif %}
+		  <a href="{{ url_for('openposition_page', openposition_key=openposition_key) }}">
+			{{ openposition.prof_name }}
+			{{ openposition.prof_surname }} {{ "-" }}			
+			{{ openposition.postype }}
+
+            <!-- {{ openposition.prof_name }}
+			{{ openposition.prof_surname }}
+			{{ openposition.prof_university }}
+			{{ openposition.prof_department }} -->
+            <!-- {{ openposition.student_name }}
+            {{ openposition.student_surname }}
+            {{ openposition.student_university }}
+            {{ openposition.student_department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	
+	{% if current_user.is_admin %}
+	 <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small">Delete</button>
+        </div>
+      </div>
+      {% endif %}
+    </form>
+	{% endif %}
+{%endblock%}
+
+

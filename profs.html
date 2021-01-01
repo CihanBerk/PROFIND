@@ -1,0 +1,42 @@
+{%extends "layout.html"%}
+{% block title %} All Professors {%endblock%}
+
+{%block content%}
+<!-- <h1>Professors</h1> -->
+	<h1 class="title">Professors</h1>
+
+	{% if profs %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="prof_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for prof_key, prof in profs %}
+	  <tr>
+		<td>
+		  {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="prof_keys" value="{{ prof_key }}"/>
+		  </label>
+		  {% endif %}
+		  <a href="{{ url_for('prof_page', prof_key=prof_key) }}">
+			{{ prof.name }}
+            {{ prof.surname }}
+            <!-- {{ prof.university }}
+            {{ prof.department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	
+	{% if current_user.is_admin %}
+	 <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small">Delete</button>
+        </div>
+      </div>
+      {% endif %}
+    </form>
+	{% endif %}
+{%endblock%}
+
+

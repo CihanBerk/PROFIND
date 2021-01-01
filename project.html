@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block title %}Project{% endblock %}
+{% block content %}
+    <h1 class="title">Project</h1>
+
+    <table class="table">
+      <tr>
+        <th>Title:</th>
+        <td>{{ project.title }}</td>
+      </tr>
+      
+      <tr>
+        <th>Agency:</th>
+        <td>{{ project.agency }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Application year:</th>
+        <td>{{ project.appyear }}</td>
+      </tr> 
+            
+	  <tr>
+        <th>Abstract:</th>
+        <td>{{ project.abstract }}</td>
+      </tr> 
+           
+	  <tr>
+        <th>Duration (Years):</th>
+        <td>{{ project.duration }}</td>
+      </tr>
+
+	  <tr>
+        <th>Status (Active / Completed):</th>
+        <td>{{ project.status }}</td>
+      </tr>
+
+	  <tr>
+        <th>Total Funding Amount (TL):</th>
+        <td>{{ project.totalamount }}</td>
+      </tr>
+      
+	  <tr>
+        <th>Available Funding Amount (TL):</th>
+        <td>{{ project.availableamount }}</td>
+      </tr>
+            
+	  <tr>
+        <th>Professor Name:</th>
+        <td>{{ project.prof_name }}</td>
+      </tr>
+	  <tr>
+        <th>Professor Surname:</th>
+        <td>{{ project.prof_surname }}</td>
+      </tr>
+	  <tr>
+        <th>Professor University:</th>
+        <td>{{ project.prof_university }}</td>
+      </tr>
+	  <tr>
+        <th>Professor Department:</th>
+        <td>{{ project.prof_department }}</td>
+      </tr>
+
+    </table>
+    
+    {% if current_user.is_admin %}
+	<div class="field is-grouped">
+      <div class="control">
+        <a class="button is-primary is-outlined is-small"
+           href="{{ request.path }}/edit">Edit</a>
+      </div>
+    </div>
+   {% endif %}
+{% endblock %}

@@ -1,0 +1,292 @@
+{% extends "layout.html" %}
+{% block title %}Professor{% endblock %}
+{% block content %}
+
+    <h1 class="title">Professor</h1>
+    <table class="table">
+      <tr>
+        <th>Name:</th>
+        <td>{{ prof.name }}</td>
+      </tr>
+      
+      <tr>
+        <th>Surname:</th>
+        <td>{{ prof.surname }}</td>
+      </tr>
+      
+	  <tr>
+        <th>University:</th>
+        <td>{{ prof.university }}</td>
+      </tr> 
+           
+	  <tr>
+        <th>Department:</th>
+        <td>{{ prof.department }}</td>
+      </tr>
+    </table>
+    
+    {% if current_user.is_admin %}
+	<div class="field is-grouped">
+      <div class="control">
+        <a class="button is-primary is-outlined is-small"
+           href="{{ request.path }}/edit">Edit</a>
+      </div>
+    </div>
+   {% endif %}
+   
+       
+	<h3 class="title">Current Students</h3>
+	
+    {% if students %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="student_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for student_key, student in students %}
+	  <tr>
+		<td>
+		  <!-- {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="student_keys" value="{{ student_key }}"/>
+		  </label>
+		  {% endif %} -->
+		  <a href="{{ url_for('student_page', student_key=student_key) }}">
+			{{ student.name }}
+            {{ student.surname }}
+            <!-- {{ student.university }}
+            {{ student.department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+    {% endif %}
+
+   
+	<h3 class="title">Alumni</h3>
+	{% if alumnis %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="alumni_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for alumni_key, alumni in alumnis %}
+	  <tr>
+		<td>
+		  <!-- {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="alumni_keys" value="{{ alumni_key }}"/>
+		  </label>
+		  {% endif %} -->
+		  <a href="{{ url_for('alumni_page', alumni_key=alumni_key) }}">
+			<!-- {{ alumni.prof_name }}
+			{{ alumni.prof_surname }}
+			{{ alumni.prof_university }}
+			{{ alumni.prof_department }} -->
+			{{ alumni.name }}
+            {{ alumni.surname }}
+            <!-- {{ alumni.degree }}
+            {{ alumni.years }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+    </form>
+	{% endif %}
+	
+	<h3 class="title">Courses</h3>
+
+	{% if courses %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="course_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for course_key, course in courses %}
+	  <tr>
+		<td>
+		  <!-- {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="course_keys" value="{{ course_key }}"/>
+		  </label>
+		  {% endif %} -->
+		  <a href="{{ url_for('course_page', course_key=course_key) }}">
+			<!-- {{ course.prof_name }}
+			{{ course.prof_surname }}
+			{{ course.prof_university }}
+			{{ course.prof_department }} -->
+			{{ course.name }}
+            <!-- {{ course.year }}
+            {{ course.term }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+    </form>   
+	{% endif %}
+	
+	<h3 class="title">Papers</h3>
+
+	{% if papers %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="paper_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for paper_key, paper in papers %}
+	  <tr>
+		<td>
+		  <!-- {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="paper_keys" value="{{ paper_key }}"/>
+		  </label>
+		  {% endif %} -->
+		  <a href="{{ url_for('paper_page', paper_key=paper_key) }}">
+			<!-- {{ paper.prof_name }}
+			{{ paper.prof_surname }}
+			{{ paper.prof_university }}
+			{{ paper.prof_department }} -->
+			{{ paper.title }} {{"-"}}
+            {{ paper.pubyear }}
+            <!-- {{ paper.pubtype }}
+            {{ paper.pubsite }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>	
+	{% endif %}
+
+
+	<h3 class="title">Projects</h3>
+
+	{% if projects %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="project_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for project_key, project in projects %}
+	  <tr>
+		<td>
+		  <!-- {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="project_keys" value="{{ project_key }}"/>
+		  </label>
+		  {% endif %} -->
+		  <a href="{{ url_for('project_page', project_key=project_key) }}">
+			<!-- {{ project.prof_name }}
+			{{ project.prof_surname }}
+			{{ project.prof_university }}
+			{{ project.prof_department }} -->
+			{{ project.title }} {{"-"}}
+            {{ project.agency }} {{"-"}}
+            {{ project.appyear }} {{"-"}}
+            {{ project.availableamount }} 
+            <!-- {{ project.duration }} 
+            {{ project.status }}
+            {{ project.totalamount }} 
+            {{ project.availableamount }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	{% endif %}
+
+	<h3 class="title">Open Positions</h3>
+
+	{% if openpositions %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="openposition_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for openposition_key, openposition in openpositions %}
+	  <tr>
+		<td>
+		  <!-- {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="openposition_keys" value="{{ openposition_key }}"/>
+		  </label>
+		  {% endif %} -->
+		  <a href="{{ url_for('openposition_page', openposition_key=openposition_key) }}">
+			
+			{{ openposition.postype }}
+
+            <!-- {{ openposition.prof_name }}
+			{{ openposition.prof_surname }}
+			{{ openposition.prof_university }}
+			{{ openposition.prof_department }} -->
+            <!-- {{ openposition.student_name }}
+            {{ openposition.student_surname }}
+            {{ openposition.student_university }}
+            {{ openposition.student_department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	{% endif %}
+
+
+	<h3 class="title">Messages</h3>
+
+	{% if messagetoprofs %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="messagetoprof_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for messagetoprof_key, messagetoprof in messagetoprofs %}
+	  <tr>
+		<td>
+		  <!-- {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="messagetoprof_keys" value="{{ messagetoprof_key }}"/>
+		  </label>
+		  {% endif %} -->
+		  <a href="{{ url_for('messagetoprof_page', messagetoprof_key=messagetoprof_key) }}">
+			<!-- {{ messagetoprof.prof_name }}
+			{{ messagetoprof.prof_surname }} {{ "-" }} -->			
+			{{ messagetoprof.mescontent }}
+
+            <!-- {{ messagetoprof.prof_name }}
+			{{ messagetoprof.prof_surname }}
+			{{ messagetoprof.prof_university }}
+			{{ messagetoprof.prof_department }} -->
+            <!-- {{ messagetoprof.student_name }}
+            {{ messagetoprof.student_surname }}
+            {{ messagetoprof.student_university }}
+            {{ messagetoprof.student_department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	{% endif %}
+
+	<h3 class="subtitle">Questions</h3>
+
+	{% if questions %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="question_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for question_key, question in questions %}
+	  <tr>
+		<td>
+		  <!-- {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="question_keys" value="{{ question_key }}"/>
+		  </label>
+		  {% endif %} -->
+		  <a href="{{ url_for('question_page', question_key=question_key) }}">
+			<!-- {{ question.prof_name }}
+			{{ question.prof_surname }} {{ "-" }} -->			
+			{{ question.quescontent }}
+
+            <!-- {{ question.prof_name }}
+			{{ question.prof_surname }}
+			{{ question.prof_university }}
+			{{ question.prof_department }} -->
+            <!-- {{ question.student_name }}
+            {{ question.student_surname }}
+            {{ question.student_university }}
+            {{ question.student_department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	{% endif %}
+		
+{% endblock %}

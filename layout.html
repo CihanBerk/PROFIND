@@ -1,0 +1,191 @@
+<! -- Base for our html files-->
+
+<html>
+	
+<head>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	
+	<title>PROFIND - {% block title %} {% endblock %}</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"/>
+	<link rel="stylesheet" href="{{url_for('static', filename = 'mymovies.css')}}"/>
+</head>
+
+<body>
+<header>
+	<nav class="navbar" aria-label="main navigation">
+        <div class="navbar-brand">
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('home_page') }}">Home</a>
+          </span>
+        </div>
+	</nav>
+
+	<nav class="navbar" aria-label="main navigation">
+        <div class="navbar-brand">          
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('profs_page') }}">Professors</a>
+          </span>
+                   
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('students_page') }}">Students</a>
+          </span>
+
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('alumnis_page') }}">Alumni</a>
+          </span>
+          
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('courses_page') }}">Courses</a>
+          </span>          
+          
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('evals_page') }}">Evals</a>
+          </span>        
+
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('papers_page') }}">Papers</a>
+          </span>        
+
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('projects_page') }}">Projects</a>
+          </span>  
+
+          <!-- <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('openpositions_page') }}">Open Positions</a>
+          </span> -->                     
+        </div>
+	</nav>
+
+
+	<nav class="navbar" aria-label="main navigation">
+        <div class="navbar-brand"> 
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('openpositions_page') }}">Open Positions</a>
+          </span>                      
+
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('messagetoprofs_page') }}">Messages</a>
+          </span>  
+          
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('questions_page') }}">Questions</a>
+          </span>                      
+        </div>
+	</nav>
+	
+	
+			
+	<nav class="navbar" aria-label="main navigation">
+        <div class="navbar-brand">  
+
+          {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('prof_add_page') }}">Add professor</a>
+          </span>
+          {% endif %}
+                 
+          {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('student_add_page') }}">Add student</a>
+          </span>
+          {% endif %}
+                    
+          {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('alumni_add_page') }}">Add alumni</a>
+          </span>
+          {% endif %}
+          
+          {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('course_add_page') }}">Add course</a>
+          </span>
+          {% endif %}
+          
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('eval_add_page') }}">Add eval</a>
+          </span>
+          {% endif %}
+          
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('paper_add_page') }}">Add paper</a>
+          </span>
+          {% endif %}
+          
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('project_add_page') }}">Add project</a>
+          </span>
+          {% endif %}
+        </div>
+	</nav>
+
+
+	<nav class="navbar" aria-label="main navigation">
+        <div class="navbar-brand">             
+		  <!-- {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('project_add_page') }}">Add project</a>
+          </span>
+          {% endif %} -->
+          
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('openposition_add_page') }}">Add Open Position</a>
+          </span>
+          {% endif %}
+          
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('messagetoprof_add_page') }}">Add Message</a>
+          </span>
+          {% endif %}
+          
+		  {% if current_user.is_admin %}
+          <span class="navbar-item">
+            <a class="button is-link" href="{{ url_for('question_add_page') }}">Add Question</a>
+          </span>
+          {% endif %}
+        </div>
+	</nav>
+	
+	
+	<nav class="navbar" aria-label="main navigation">
+        <div class="navbar-brand">            
+          <span class="navbar-item">
+          {% if not current_user.is_authenticated %}
+            <a class="button is-link" href="{{ url_for('login_page') }}">Log in</a>
+          {% else %}
+            {{ current_user.username }}
+            <a class="button is-link" href="{{ url_for('logout_page') }}">Log out</a>
+          {% endif %}
+        </div>
+	</nav>
+</header>
+	
+<main>
+	{% for message in get_flashed_messages() %}
+	<div class="notification is-info">{{ message }}</div>
+	{% endfor %}
+	
+	<section class="section">
+	<div class="content">
+	  {% block content %}{% endblock %}
+	</div>
+	</section>
+</main>
+	
+<!-- All our webpages have this footer and title-->
+
+<footer class="footer">
+  <div class="content">
+	<small>&copy; Cihan Berk Güngör 2020</small>
+  </div>
+</footer>
+</body>
+
+</html>
+

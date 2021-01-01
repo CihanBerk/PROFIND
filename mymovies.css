@@ -1,0 +1,15 @@
+h1{
+	color:red
+}
+
+footer{
+	text-align: center
+} 
+
+--- /home/cihan/Desktop/flaskPractice/static/mymovies.css
++++ /home/cihan/Desktop/flaskPractice/static/mymovies.css
+@@ -1,4 +1,4 @@
+-h1 {
++h1.title {
+     color: red#e9601a;
+ }

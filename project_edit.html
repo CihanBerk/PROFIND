@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+{% block title %}Edit project{% endblock %}
+{% block content %}
+    <h1 class="title">Edit project</h1>
+
+    <form action="" method="post" name="project_edit"> <!-- Here action is some url -->
+	  {{ form.csrf_token }}                
+                  
+      <div class="field">
+        <label for="title" class="label">Title</label>
+        <div class="control">
+          {{ form.title(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.title.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+            
+      <div class="field">
+        <label for="title" class="label">Agency</label>
+        <div class="control">
+          {{ form.agency(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.agency.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+
+      <div class="field">
+        <label for="title" class="label">Application Year</label>
+        <div class="control">
+          {{ form.appyear(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.appyear.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+            
+      <div class="field">
+        <label for="year" class="label">Abstact</label>
+        <div class="control">
+          {{ form.abstract(class='input') }}
+        </div>
+        {% for error in form.abstract.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+
+      <div class="field">
+        <label for="year" class="label">Duration (Years)</label>
+        <div class="control">
+          {{ form.duration(class='input') }}
+        </div>
+        {% for error in form.duration.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+
+      <div class="field">
+        <label for="year" class="label">Status (Active / Completed)</label>
+        <div class="control">
+          {{ form.status(class='input') }}
+        </div>
+        {% for error in form.status.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+
+      <div class="field">
+        <label for="year" class="label">Total Funding Amount (TL)</label>
+        <div class="control">
+          {{ form.totalamount(class='input') }}
+        </div>
+        {% for error in form.totalamount.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+
+      <div class="field">
+        <label for="year" class="label">Available Funding Amount (TL)</label>
+        <div class="control">
+          {{ form.availableamount(class='input') }}
+        </div>
+        {% for error in form.availableamount.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+
+	  <div class="field">
+        <label for="title" class="label">Professor Name</label>
+        <div class="control">
+          {{ form.prof_name(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.prof_name.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+                  
+	  <div class="field">
+        <label for="title" class="label">Professor Surname</label>
+        <div class="control">
+          {{ form.prof_surname(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.prof_surname.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>
+            
+	  <div class="field">
+        <label for="title" class="label">Professor University</label>
+        <div class="control">
+          {{ form.prof_university(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.prof_university.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>            
+                  
+	  <div class="field">
+        <label for="title" class="label">Professor Department</label>
+        <div class="control">
+          {{ form.prof_department(required=True, autofocus=True, class='input') }}
+        </div>
+        {% for error in form.prof_department.errors %}
+        <p class="help has-background-warning">
+            {{ error }}
+        </p>
+        {% endfor %}
+      </div>  
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary is-small">Save</button>
+        </div>
+      </div>
+    </form>
+{% endblock %}

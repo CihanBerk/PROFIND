@@ -1,0 +1,49 @@
+{%extends "layout.html"%}
+{% block title %} Questions {%endblock%}
+
+{%block content%}
+	<h1 class="title">Questions</h1>
+
+	{% if questions %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="question_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for question_key, question in questions %}
+	  <tr>
+		<td>
+		  {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="question_keys" value="{{ question_key }}"/>
+		  </label>
+		  {% endif %}
+		  <a href="{{ url_for('question_page', question_key=question_key) }}">
+			{{ question.prof_name }}
+			{{ question.prof_surname }} {{ "-" }}			
+			{{ question.quescontent }}
+
+            <!-- {{ question.prof_name }}
+			{{ question.prof_surname }}
+			{{ question.prof_university }}
+			{{ question.prof_department }} -->
+            <!-- {{ question.student_name }}
+            {{ question.student_surname }}
+            {{ question.student_university }}
+            {{ question.student_department }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	
+	{% if current_user.is_admin %}
+	 <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small">Delete</button>
+        </div>
+      </div>
+      {% endif %}
+    </form>
+	{% endif %}
+{%endblock%}
+
+

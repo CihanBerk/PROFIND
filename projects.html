@@ -1,0 +1,49 @@
+{%extends "layout.html"%}
+{% block title %} All Projects {%endblock%}
+
+{%block content%}
+	<h1 class="title">Projects</h1>
+
+	{% if projects %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="project_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for project_key, project in projects %}
+	  <tr>
+		<td>
+		  {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="project_keys" value="{{ project_key }}"/>
+		  </label>
+		  {% endif %}
+		  <a href="{{ url_for('project_page', project_key=project_key) }}">
+			<!-- {{ project.prof_name }}
+			{{ project.prof_surname }}
+			{{ project.prof_university }}
+			{{ project.prof_department }} -->
+			{{ project.title }} {{"-"}}
+            {{ project.agency }} {{"-"}}
+            {{ project.appyear }} {{"-"}}
+            {{ project.availableamount }}
+            <!-- {{ project.duration }} 
+            {{ project.status }}
+            {{ project.totalamount }} 
+            {{ project.availableamount }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	
+	{% if current_user.is_admin %}
+	 <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small">Delete</button>
+        </div>
+      </div>
+      {% endif %}
+    </form>
+	{% endif %}
+{%endblock%}
+
+

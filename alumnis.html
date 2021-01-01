@@ -1,0 +1,48 @@
+{%extends "layout.html"%}
+{% block title %} All Alumni {%endblock%}
+
+{%block content%}
+	<h1 class="title">Alumni</h1>
+
+	{% if alumnis %}
+	<!-- Here action of the form is empty since it returns the same page-->
+    <form action="" method="post" name="alumni_list">
+	<table class="table is-striped is-fullwidth">
+	  {% for alumni_key, alumni in alumnis %}
+	  <tr>
+		<td>
+		  {% if current_user.is_admin %}
+		  <label class="checkbox">
+		    <input type="checkbox" name="alumni_keys" value="{{ alumni_key }}"/>
+		  </label>
+		  {% endif %}
+		  <a href="{{ url_for('alumni_page', alumni_key=alumni_key) }}">
+			<!-- {{ alumni.prof_name }}
+			{{ alumni.prof_surname }}
+			{{ alumni.prof_university }}
+			{{ alumni.prof_department }} -->
+			{{ alumni.name }}
+            {{ alumni.surname }}
+            {{"-"}}
+            {{ alumni.prof_name }}
+			{{ alumni.prof_surname }}
+            <!-- {{ alumni.degree }}
+            {{ alumni.years }} -->
+          </a>
+		</td>
+	  </tr>
+	  {% endfor %}
+	</table>
+	
+	{% if current_user.is_admin %}
+	 <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-danger is-small">Delete</button>
+        </div>
+      </div>
+      {% endif %}
+    </form>
+	{% endif %}
+{%endblock%}
+
+

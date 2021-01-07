@@ -618,9 +618,6 @@ class Database:
 	def get_students(self):
 		students = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT STUDENT.ID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT FROM STUDENT, PROFESSOR WHERE (STUDENT.PROFID = PROFESSOR.ID) ORDER BY STUDENT.ID"
 			cursor.execute(query)
@@ -631,9 +628,6 @@ class Database:
 	def get_papers(self):
 		papers = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT PAPER.PAPERID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, PAPER.TITLE, PAPER.PUBYEAR, PAPER.PUBTYPE, PAPER.PUBSITE FROM PAPER, PROFESSOR WHERE (PAPER.PROFID = PROFESSOR.ID) ORDER BY PAPER.PAPERID"
 			cursor.execute(query)
@@ -644,9 +638,6 @@ class Database:
 	def get_projects(self):
 		projects = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT PROJECT.PROJECTID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, PROJECT.TITLE, PROJECT.AGENCY, PROJECT.APPYEAR, PROJECT.ABSTRACT, PROJECT.DURATION, PROJECT.STATUS, PROJECT.TOTALAMOUNT, PROJECT.AVAILABLEAMOUNT FROM PROJECT, PROFESSOR WHERE (PROJECT.PROFID = PROFESSOR.ID) ORDER BY PROJECT.PROJECTID"
 			cursor.execute(query)
@@ -657,9 +648,6 @@ class Database:
 	def get_courses(self):
 		courses = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT COURSE.COURSEID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, COURSE.NAME, COURSE.YEAR, COURSE.TERM FROM COURSE, PROFESSOR WHERE (COURSE.PROFID = PROFESSOR.ID) ORDER BY COURSE.COURSEID"
 			cursor.execute(query)
@@ -670,9 +658,6 @@ class Database:
 	def get_evals(self):
 		evals = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT COMMENT_EVAL.EVALID, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT, COURSE.NAME, COURSE.YEAR, COURSE.TERM, COMMENT_EVAL.SUBJECT, COMMENT_EVAL.EVAL FROM STUDENT, COURSE, COMMENT_EVAL WHERE ((COMMENT_EVAL.STUDENTID = STUDENT.ID) AND (COMMENT_EVAL.COURSEID = COURSE.COURSEID)) ORDER BY COMMENT_EVAL.EVALID"
 			cursor.execute(query)
@@ -683,9 +668,6 @@ class Database:
 	def get_openpositions(self):
 		openpositions = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT OPENPOSITION.POSITIONID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT, OPENPOSITION.POSTYPE, OPENPOSITION.REQUIREMENTS FROM PROFESSOR, STUDENT, OPENPOSITION WHERE ((OPENPOSITION.STUDENTID = STUDENT.ID) AND (OPENPOSITION.PROFID = PROFESSOR.ID)) ORDER BY OPENPOSITION.POSITIONID"
 			cursor.execute(query)
@@ -696,9 +678,6 @@ class Database:
 	def get_messagetoprofs(self):
 		messagetoprofs = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT MESSAGETOPROF.MESSAGEID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT, MESSAGETOPROF.MESCONTENT FROM PROFESSOR, STUDENT, MESSAGETOPROF WHERE ((MESSAGETOPROF.STUDENTID = STUDENT.ID) AND (MESSAGETOPROF.PROFID = PROFESSOR.ID)) ORDER BY MESSAGETOPROF.MESSAGEID"
 			cursor.execute(query)
@@ -709,9 +688,6 @@ class Database:
 	def get_questions(self):
 		questions = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT QUESTION.QUESTIONID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT, QUESTION.QUESCONTENT FROM PROFESSOR, STUDENT, QUESTION WHERE ((QUESTION.STUDENTID = STUDENT.ID) AND (QUESTION.PROFID = PROFESSOR.ID)) ORDER BY QUESTION.QUESTIONID"
 			cursor.execute(query)
@@ -722,9 +698,6 @@ class Database:
 	def get_alumnis(self):
 		alumnis = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT ALUMNI.ALUMNIID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, ALUMNI.NAME, ALUMNI.SURNAME, ALUMNI.DEGREE, ALUMNI.TOTYEAR FROM ALUMNI, PROFESSOR WHERE (ALUMNI.PROFID = PROFESSOR.ID) ORDER BY ALUMNI.ALUMNIID"
 			cursor.execute(query)
@@ -736,9 +709,6 @@ class Database:
 	def get_prof_students(self, prof_key):
 		students = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT STUDENT.ID, STUDENT.PROFID, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT FROM STUDENT, PROFESSOR WHERE ((STUDENT.PROFID = PROFESSOR.ID) AND (PROFESSOR.ID = ?))"
 			cursor.execute(query, (prof_key,))
@@ -749,9 +719,6 @@ class Database:
 	def get_prof_papers(self, prof_key):
 		papers = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT PAPER.PAPERID, PAPER.PROFID, PAPER.TITLE, PAPER.PUBYEAR, PAPER.PUBTYPE, PAPER.PUBSITE FROM PAPER, PROFESSOR WHERE ((PAPER.PROFID = PROFESSOR.ID) AND (PROFESSOR.ID = ?))"
 			cursor.execute(query, (prof_key,))
@@ -762,9 +729,6 @@ class Database:
 	def get_prof_projects(self, prof_key):
 		projects = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT PROJECT.PROJECTID, PROJECT.PROFID, PROJECT.TITLE, PROJECT.AGENCY, PROJECT.APPYEAR, PROJECT.ABSTRACT, PROJECT.DURATION, PROJECT.STATUS, PROJECT.TOTALAMOUNT, PROJECT.AVAILABLEAMOUNT FROM PROJECT, PROFESSOR WHERE ((PROJECT.PROFID = PROFESSOR.ID) AND (PROFESSOR.ID = ?))"
 			cursor.execute(query, (prof_key,))
@@ -775,9 +739,6 @@ class Database:
 	def get_prof_courses(self, prof_key):
 		courses = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT COURSE.COURSEID, COURSE.PROFID, COURSE.NAME, COURSE.YEAR, COURSE.TERM FROM COURSE, PROFESSOR WHERE ((COURSE.PROFID = PROFESSOR.ID) AND (PROFESSOR.ID = ?))"
 			cursor.execute(query, (prof_key,))
@@ -788,9 +749,6 @@ class Database:
 	def get_prof_alumnis(self, prof_key):
 		alumnis = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT ALUMNI.ALUMNIID, ALUMNI.PROFID, ALUMNI.NAME, ALUMNI.SURNAME, ALUMNI.DEGREE, ALUMNI.TOTYEAR FROM ALUMNI, PROFESSOR WHERE ((ALUMNI.PROFID = PROFESSOR.ID) AND (PROFESSOR.ID = ?))"
 			cursor.execute(query, (prof_key,))
@@ -801,9 +759,6 @@ class Database:
 	def get_prof_openpositions(self, prof_key):
 		openpositions = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT OPENPOSITION.POSITIONID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT, OPENPOSITION.POSTYPE, OPENPOSITION.REQUIREMENTS FROM PROFESSOR, STUDENT, OPENPOSITION WHERE ((OPENPOSITION.STUDENTID = STUDENT.ID) AND (OPENPOSITION.PROFID = PROFESSOR.ID) AND (PROFESSOR.ID = ?))"
 			cursor.execute(query, (prof_key,))
@@ -814,9 +769,6 @@ class Database:
 	def get_prof_messagetoprofs(self, prof_key):
 		messagetoprofs = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT MESSAGETOPROF.MESSAGEID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT, MESSAGETOPROF.MESCONTENT FROM PROFESSOR, STUDENT, MESSAGETOPROF WHERE ((MESSAGETOPROF.STUDENTID = STUDENT.ID) AND (MESSAGETOPROF.PROFID = PROFESSOR.ID) AND (PROFESSOR.ID = ?))"
 			cursor.execute(query, (prof_key,))
@@ -827,9 +779,6 @@ class Database:
 	def get_prof_questions(self, prof_key):
 		questions = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT QUESTION.QUESTIONID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT, QUESTION.QUESCONTENT FROM PROFESSOR, STUDENT, QUESTION WHERE ((QUESTION.STUDENTID = STUDENT.ID) AND (QUESTION.PROFID = PROFESSOR.ID) AND (PROFESSOR.ID = ?))"
 			cursor.execute(query, (prof_key,))
@@ -840,9 +789,6 @@ class Database:
 	def get_course_evals(self, course_key):
 		evals = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT COMMENT_EVAL.EVALID, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT, COURSE.NAME, COURSE.YEAR, COURSE.TERM, COMMENT_EVAL.SUBJECT, COMMENT_EVAL.EVAL FROM STUDENT, COURSE, COMMENT_EVAL WHERE ((COMMENT_EVAL.STUDENTID = STUDENT.ID) AND (COMMENT_EVAL.COURSEID = COURSE.COURSEID) AND (COURSE.COURSEID = ?))"
 			cursor.execute(query, (course_key,))
@@ -853,9 +799,6 @@ class Database:
 	def get_openposition_students(self, openposition_key):
 		students = []
 		with dbapi2.connect(self.dbfile) as connection:
-			#cursor = connection.cursor()
-			#query = "SELECT ID, PROFID, NAME, SURNAME, UNIVERSITY, DEPARTMENT FROM STUDENT ORDER BY ID"
-			#cursor.execute(query)
 			cursor = connection.cursor()
 			query = "SELECT  STUDENT.ID, PROFESSOR.NAME, PROFESSOR.SURNAME, PROFESSOR.UNIVERSITY, PROFESSOR.DEPARTMENT, STUDENT.NAME, STUDENT.SURNAME, STUDENT.UNIVERSITY, STUDENT.DEPARTMENT FROM STUDENT, PROFESSOR, OPENPOSITION WHERE ((OPENPOSITION.STUDENTID = STUDENT.ID) AND (OPENPOSITION.PROFID = PROFESSOR.ID) AND (OPENPOSITION.POSITIONID = ?))"
 			cursor.execute(query, (openposition_key,))

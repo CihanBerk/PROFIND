@@ -247,21 +247,21 @@ def student_page(student_key):
     db = current_app.config["db"]
     student = db.get_student(student_key)
     if student is None:
-		abort(404)
+        abort(404)
     return render_template("student.html", student=student)
 
 def paper_page(paper_key):
     db = current_app.config["db"]
     paper = db.get_paper(paper_key)
     if paper is None:
-		abort(404)
+        abort(404)
     return render_template("paper.html", paper=paper)
 
 def project_page(project_key):
     db = current_app.config["db"]
     project = db.get_project(project_key)
     if project is None:
-		abort(404)
+        abort(404)
     return render_template("project.html", project=project)
 
 def course_page(course_key):
@@ -270,45 +270,45 @@ def course_page(course_key):
     evals = []
     evals = db.get_course_evals(course_key)
     if course is None:
-		abort(404)
+        abort(404)
     return render_template("course.html", course=course, evals=evals)
 
 def eval_page(eval_key):
     db = current_app.config["db"]
     evall = db.get_eval(eval_key)
     if evall is None:
-		abort(404)
+        abort(404)
     return render_template("eval.html", evall=evall)
 
 def openposition_page(openposition_key):
-	db = current_app.config["db"]
-	openposition = db.get_openposition(openposition_key)
+    db = current_app.config["db"]
+    openposition = db.get_openposition(openposition_key)
 
-	students = []
-	students = db.get_openposition_students(openposition_key)
-	if openposition is None:
-		abort(404)
-	return render_template("openposition.html", openposition=openposition, students=students)
+    students = []
+    students = db.get_openposition_students(openposition_key)
+    if openposition is None:
+        abort(404)
+    return render_template("openposition.html", openposition=openposition, students=students)
 
 def messagetoprof_page(messagetoprof_key):
     db = current_app.config["db"]
     messagetoprof = db.get_messagetoprof(messagetoprof_key)
     if messagetoprof is None:
-		abort(404)
+        abort(404)
     return render_template("messagetoprof.html", messagetoprof=messagetoprof)
 
 def question_page(question_key):
     db = current_app.config["db"]
     question = db.get_question(question_key)
     if question is None:
-		abort(404)
+        abort(404)
     return render_template("question.html", question=question)
 
 def alumni_page(alumni_key):
     db = current_app.config["db"]
     alumni = db.get_alumni(alumni_key)
     if alumni is None:
-		abort(404)
+        abort(404)
     return render_template("alumni.html", alumni=alumni)
 
 
@@ -447,7 +447,7 @@ def course_add_page():
 
 @login_required
 def eval_add_page():
-	if not current_user.is_admin:
+	if not current_user.is_authenticated: #admin:
 		abort(401)
 	form = EvalEditForm()
 	if form.validate_on_submit():
@@ -505,7 +505,7 @@ def openposition_add_page():
 
 @login_required
 def messagetoprof_add_page():
-	if not current_user.is_admin:
+	if not current_user.is_authenticated: #admin:
 		abort(401)
 	form = MessagetoprofEditForm()
 	if form.validate_on_submit():
@@ -533,7 +533,7 @@ def messagetoprof_add_page():
 
 @login_required
 def question_add_page():
-	if not current_user.is_admin:
+	if not current_user.is_authenticated: #admin:
 		abort(401)
 	form = QuestionEditForm()
 	if form.validate_on_submit():
